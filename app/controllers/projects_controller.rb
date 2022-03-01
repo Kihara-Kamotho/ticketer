@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.all 
+    @projects = Project.all
   end
 
   def new
@@ -19,6 +19,20 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+  end
+
+  def edit
+    @project = Project.find(params[:id])
+  end
+
+  def update
+    @project = Project.find(params[:id])
+    if @project.update(project_params)
+      redirect_to @project, flash: {notice: "Project has been updated"}
+    else
+      flash.now[:alert] = "Project failed to update"
+      render :edit
+    end
   end
 
   private
