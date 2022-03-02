@@ -3,7 +3,7 @@
   <%= form_with(model: project, local: true) do |form| %>
   <div class="error-explanation">
     <% if project.errors.any? %>
-      <h2><%= pluralize(project.errors.count, "error") %>prohibited project from saving</h2>
+      <h2><%= pluralize(project.errors.count, "Error") %></h2>
       <ul>
         <% project.errors.full_messages do |msg| %>
           <li><%= msg %></li>

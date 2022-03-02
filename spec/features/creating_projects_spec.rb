@@ -8,15 +8,16 @@ RSpec.feature "user can create new project" do
 
     fill_in "Name", with: "Project one"
     fill_in "Description", with: "New project"
-    click_button "create project"
+    click_button "Create Project"
   end
   # validations
   it "when provided with invalid attributes" do
     visit "/"
 
     click_link "new project"
-    click_button "create project"
+    fill_in "Name", with: ""
+    click_button "Create Project"
 
-    expect(page).to have_content "Name can`t be blank"
+    expect(page).to have_content "Error"
   end
 end

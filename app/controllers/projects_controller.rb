@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :set_project, only: [:show, :update, :destroy]
+
   def index
     @projects = Project.all
   end
@@ -13,12 +15,13 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to @project, flash: {notice: "project created successfully"}
     else
-      render :new, flash: {alert: "project not created"}
+      render :new
+      flash[:alert] = "Project not created"
     end
   end
 
   def show
-    @project = Project.find(params[:id])
+    # @project = Project.find(params[:id])
   end
 
   def edit
@@ -26,7 +29,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:id])
     if @project.update(project_params)
       redirect_to @project, flash: {notice: "Project has been updated"}
     else
@@ -35,8 +37,20 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def destroy
+    if @project.destroy
+      redirect_to root_path, flash: { notice: "Project has been deleted" }
+    else
+      flash.now[:alert] = "Project failed to delete"
+    end
+  end
+
   private
   def project_params
     params.require(:project).permit(:name, :description)
+  end
+
+  def set_project
+    @project = Project.find(params[:id])
   end
 end
