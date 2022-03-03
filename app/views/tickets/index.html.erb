@@ -1,0 +1,10 @@
+<h2>Tickets</h2>
+
+<% @tickets.each do |ticket| %>
+  <div class="ticket-name">
+    <%= ticket.name %>
+  </div>
+  <div class="ticket-desc">
+    <%= ticket.description %>
+  </div>
+<% end %>

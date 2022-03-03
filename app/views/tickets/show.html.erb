@@ -1,0 +1,15 @@
+<div class="ticket-project">
+  <%= @project.name %>
+</div>
+
+<div class="ticket-name">
+  <%= @ticket.name %>
+</div>
+<div class="ticket-desc">
+  <%= @ticket.description %>
+</div>
+
+
+<div class="tickets-path">
+  <%= link_to "back", project_tickets_path(@project, @ticket) %>
+</div>
