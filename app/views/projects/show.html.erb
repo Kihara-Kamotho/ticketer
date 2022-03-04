@@ -24,3 +24,11 @@
     <li><%= link_to "New Ticket", new_project_ticket_path(@project) %></li>
   </ul>
 </header>
+
+<!-- render project tickets -->
+<ol class="project-tickets">
+  <% @project.tickets.each do |ticket| %>
+    <li><%= ticket.name %></li>
+    <%= link_to 'ticket', [@project, ticket] %>
+  <% end %>
+</ol>
